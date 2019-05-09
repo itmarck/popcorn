@@ -1,0 +1,17 @@
+:root {
+  --colorPrimario: #17181B;
+  --colorOscuro: #16171A;
+  --colorClaro: #4A5459;
+  --colorEnfasis: #2B6ED2;
+  --textoClaro: #B4B4B4;
+  --textoOscuro: #0E0E0E;
+  --Blanco: #FFFFFF;
+  --Negro: #000000;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open sans', sans-serif;
+  background-color: var(--colorPrimario);
+  color: var(--Blanco);
+}

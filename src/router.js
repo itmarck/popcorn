@@ -1,24 +1,48 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import Peliculas from "./views/Peliculas.vue";
 
 Vue.use(Router);
 
 export default new Router({
+  mode: "history",
   routes: [
     {
-      path: "/",
-      name: "home",
-      component: Home
+      path: "*",
+      redirect: "/peliculas"
     },
     {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+      path: "/peliculas",
+      name: "peliculas",
+      component: Peliculas
+    },
+    {
+      path: "/series",
+      name: "series"
+    },
+    {
+      path: "/anime",
+      name: "anime"
+    },
+    {
+      path: "/indie",
+      name: "indie"
+    },
+    {
+      path: "/buscar",
+      name: "buscar"
+    },
+    {
+      path: "/favoritos",
+      name: "favoritos"
+    },
+    {
+      path: "/info",
+      name: "info"
+    },
+    {
+      path: "/configuracion",
+      name: "configuracion"
     }
   ]
 });
