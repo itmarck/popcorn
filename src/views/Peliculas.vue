@@ -1,29 +1,37 @@
 <template>
   <div>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
-    <pop-poster></pop-poster>
+    <pop-poster
+      v-for="(pelicula, index) in peliculas"
+      :key="index"
+      :titulo="pelicula.titulo"
+      :anio="pelicula.anio"
+      :ruta="pelicula.ruta"
+    ></pop-poster>
   </div>
 </template>
 
 <script>
+import firebase from "firebase";
 import PopPoster from "@/components/PopPoster.vue";
 export default {
   name: "Peliculas",
   components: {
     PopPoster
+  },
+  data() {
+    return {
+      peliculas: []
+    };
+  },
+  beforeCreate() {
+    firebase
+      .firestore()
+      .collection("/peliculas")
+      .onSnapshot(snapshot => {
+        snapshot.forEach(doc => {
+          this.peliculas.push(doc.data());
+        });
+      });
   }
 };
 </script>

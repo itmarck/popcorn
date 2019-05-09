@@ -2,17 +2,19 @@
   <article>
     <div>
       <!-- W: 400px H: 600px -->
-      <img
-        src="@/assets/aquaman.jpg"
-        alt="Cover"
-        width="400px"
-        height="600px"
-      />
+      <img :src="ruta" alt="Cover" width="400px" height="600px" />
     </div>
-    <h3>Aquaman</h3>
-    <h4>2018</h4>
+    <h3>{{ titulo }}</h3>
+    <h4>{{ anio }}</h4>
   </article>
 </template>
+
+<script>
+export default {
+  name: "PopPoster",
+  props: ["titulo", "anio", "ruta"]
+};
+</script>
 
 <style scoped>
 div {
