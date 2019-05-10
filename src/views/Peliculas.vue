@@ -11,7 +11,8 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/firestore";
 import PopPoster from "@/components/PopPoster.vue";
 export default {
   name: "Peliculas",
@@ -23,12 +24,13 @@ export default {
       peliculas: []
     };
   },
-  beforeCreate() {
+  created() {
     firebase
       .firestore()
       .collection("/peliculas")
-      .onSnapshot(snapshot => {
-        snapshot.forEach(doc => {
+      .onSnapshot(snap => {
+        this.peliculas = [];
+        snap.forEach(doc => {
           this.peliculas.push(doc.data());
         });
       });

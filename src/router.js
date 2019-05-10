@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Peliculas from "./views/Peliculas.vue";
+import Admin from "./components/AppAdmin.vue";
 
 Vue.use(Router);
 
@@ -43,6 +44,10 @@ export default new Router({
     {
       path: "/configuracion",
       name: "configuracion"
+    },
+    {
+      path: "/add",
+      component: Admin
     }
   ]
 });
