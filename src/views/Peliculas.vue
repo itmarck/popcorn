@@ -1,23 +1,23 @@
 <template>
   <div>
-    <pop-poster
+    <app-poster
       v-for="(pelicula, index) in peliculas"
       :key="index"
       :titulo="pelicula.titulo"
       :anio="pelicula.anio"
       :ruta="pelicula.ruta"
-    ></pop-poster>
+    ></app-poster>
   </div>
 </template>
 
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
-import PopPoster from "@/components/PopPoster.vue";
+import AppPoster from "@/components/AppPoster.vue";
 export default {
   name: "Peliculas",
   components: {
-    PopPoster
+    AppPoster
   },
   data() {
     return {

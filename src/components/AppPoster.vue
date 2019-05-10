@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "PopPoster",
+  name: "AppPoster",
   props: ["titulo", "anio", "ruta"]
 };
 </script>
