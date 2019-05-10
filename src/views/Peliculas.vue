@@ -28,6 +28,7 @@ export default {
     firebase
       .firestore()
       .collection("/peliculas")
+      .orderBy("titulo")
       .onSnapshot(snap => {
         this.peliculas = [];
         snap.forEach(doc => {
@@ -46,39 +47,39 @@ div {
   grid-template-columns: repeat(1, 1fr);
 }
 
-@media (max-width: 400px) {
-  div {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
-@media (min-width: 400px) and (max-width: 600px) {
+@media (min-width: 320px) and (max-width: 480px) {
   div {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 600px) and (max-width: 800px) {
+@media (min-width: 480px) and (max-width: 640px) {
   div {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 800px) and (max-width: 1000px) {
+@media (min-width: 640px) and (max-width: 800px) {
   div {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (min-width: 1000px) and (max-width: 1200px) {
+@media (min-width: 800px) and (max-width: 1080px) {
   div {
     grid-template-columns: repeat(5, 1fr);
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1080px) and (max-width: 1270px) {
   div {
     grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (min-width: 1270px) {
+  div {
+    grid-template-columns: repeat(7, 1fr);
   }
 }
 </style>
