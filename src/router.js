@@ -1,6 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Peliculas from "./views/Peliculas.vue";
+import Series from "./views/Series.vue";
+import Anime from "./views/Anime.vue";
+import Indie from "./views/Indie.vue";
 import Admin from "./components/AppAdmin.vue";
 
 Vue.use(Router);
@@ -19,15 +22,18 @@ export default new Router({
     },
     {
       path: "/series",
-      name: "series"
+      name: "series",
+      component: Series
     },
     {
       path: "/anime",
-      name: "anime"
+      name: "anime",
+      component: Anime
     },
     {
       path: "/indie",
-      name: "indie"
+      name: "indie",
+      component: Indie
     },
     {
       path: "/buscar",
