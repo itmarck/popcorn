@@ -1,5 +1,5 @@
 <template>
-  <app-cartelera nombre="indie"></app-cartelera>
+  <app-cartelera coleccion="indie"></app-cartelera>
 </template>
 
 <script>
