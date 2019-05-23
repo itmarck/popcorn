@@ -2,8 +2,8 @@
   <div>
     <section>
       <app-poster
-        v-for="(film, i) in cartelera"
-        :key="i"
+        v-for="film in cartelera"
+        :key="film.id"
         :poster="{ ...film, coleccion }"
       ></app-poster>
     </section>
