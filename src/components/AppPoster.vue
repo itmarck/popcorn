@@ -1,6 +1,6 @@
 <template>
   <article>
-    <section>
+    <section @click="mostrarDetalle">
       <img :src="poster.ruta" alt="Cover" width="400px" height="600px" />
     </section>
     <h3>{{ poster.titulo }}</h3>
@@ -9,9 +9,20 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   props: {
     poster: Object
+  },
+  methods: {
+    ...mapMutations(["setFilm"]),
+    mostrarDetalle() {
+      this.setFilm({
+        id: this.poster.id,
+        coleccion: this.poster.coleccion
+      });
+      this.$router.push({ path: "/detalle" });
+    }
   }
 };
 </script>
