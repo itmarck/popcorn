@@ -15,9 +15,9 @@ export default {
     poster: Object
   },
   methods: {
-    ...mapMutations(["setFilm"]),
+    ...mapMutations(["cambiarEstado"]),
     mostrarDetalle() {
-      this.setFilm({
+      this.cambiarEstado({
         id: this.poster.id,
         coleccion: this.poster.coleccion
       });

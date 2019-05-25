@@ -1,18 +1,18 @@
 <template>
   <div>
     <section>
-      <img :src="info.ruta" :alt="info.titulo" />
+      <img :src="film.ruta" :alt="film.titulo" />
     </section>
     <body>
       <button @click="cerrar">Cerrar</button>
-      <h1>{{ info.titulo }}</h1>
-      <h2>{{ info.anio }}</h2>
-      <p>{{ film.coleccion.toUpperCase() }}</p>
-      <p>{{ info.sinopsis }}</p>
-      <p v-if="this.info.temporadas > 0">temp: {{ info.temporadas }}</p>
-      <p v-if="this.info.capitulos > 0">caps: {{ info.capitulos }}</p>
+      <h1>{{ film.titulo }}</h1>
+      <h2>{{ film.anio }}</h2>
+      <p>{{ select.coleccion.toUpperCase() }}</p>
+      <p>{{ film.sinopsis }}</p>
+      <p v-if="this.film.temporadas > 0">temp: {{ film.temporadas }}</p>
+      <p v-if="this.film.capitulos > 0">caps: {{ film.capitulos }}</p>
       <ul>
-        <li v-for="(genero, i) of info.generos" :key="i">
+        <li v-for="(genero, i) of film.generos" :key="i">
           {{ genero }}
         </li>
       </ul>
@@ -27,32 +27,32 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 export default {
   name: "AppDetalle",
-  data() {
-    return {
-      info: {}
-    };
-  },
   created() {
-    if (this.film.id == "") {
+    if (this.select.id == "") {
       this.$router.push({ path: "/" });
     } else {
       firebase
         .firestore()
-        .collection(this.film.coleccion)
-        .doc(this.film.id)
+        .collection(this.select.coleccion)
+        .doc(this.select.id)
         .get()
         .then(doc => {
-          this.info = doc.data();
+          this.film = doc.data();
         });
     }
   },
+  data() {
+    return {
+      film: {}
+    };
+  },
   methods: {
     cerrar() {
-      this.$router.push({ path: `/${this.film.coleccion}` });
+      this.$router.push({ path: `/${this.select.coleccion}` });
     }
   },
   computed: {
-    ...mapState(["film"])
+    ...mapState(["select"])
   }
 };
 </script>

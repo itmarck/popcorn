@@ -5,16 +5,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    film: {
+    select: {
       coleccion: "",
       id: ""
     }
   },
   mutations: {
-    setFilm(state, payload) {
-      // Vue.set(state.film, "id", payload.id);
-      // Vue.set(state.film, "coleccion", payload.coleccion);
-      state.film = payload;
+    cambiarEstado(state, payload) {
+      state.select = payload;
     }
   }
 });
