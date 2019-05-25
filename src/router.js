@@ -1,6 +1,14 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Peliculas from "./views/Peliculas.vue";
+import Series from "./views/Series.vue";
+import Anime from "./views/Anime.vue";
+import Indie from "./views/Indie.vue";
+import Detalle from "./components/AppDetalle.vue";
+import Buscar from "./components/AppBuscar.vue";
+import Favoritos from "./components/AppFavoritos.vue";
+import Info from "./components/AppInfo.vue";
+import Configuracion from "./components/AppConfiguracion.vue";
 
 Vue.use(Router);
 
@@ -18,31 +26,43 @@ export default new Router({
     },
     {
       path: "/series",
-      name: "series"
+      name: "series",
+      component: Series
     },
     {
       path: "/anime",
-      name: "anime"
+      name: "anime",
+      component: Anime
     },
     {
       path: "/indie",
-      name: "indie"
+      name: "indie",
+      component: Indie
+    },
+    {
+      path: "/detalle",
+      name: "detalle",
+      component: Detalle
     },
     {
       path: "/buscar",
-      name: "buscar"
+      name: "buscar",
+      component: Buscar
     },
     {
       path: "/favoritos",
-      name: "favoritos"
+      name: "favoritos",
+      component: Favoritos
     },
     {
       path: "/info",
-      name: "info"
+      name: "info",
+      component: Info
     },
     {
       path: "/configuracion",
-      name: "configuracion"
+      name: "configuracion",
+      component: Configuracion
     }
   ]
 });

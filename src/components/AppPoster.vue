@@ -1,23 +1,34 @@
 <template>
   <article>
-    <div>
-      <!-- W: 400px H: 600px -->
-      <img :src="ruta" alt="Cover" width="400px" height="600px" />
-    </div>
-    <h3>{{ titulo }}</h3>
-    <h4>{{ anio }}</h4>
+    <section @click="mostrarDetalle">
+      <img :src="poster.ruta" alt="Cover" width="400px" height="600px" />
+    </section>
+    <h3>{{ poster.titulo }}</h3>
+    <h4>{{ poster.anio }}</h4>
   </article>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
-  name: "PopPoster",
-  props: ["titulo", "anio", "ruta"]
+  props: {
+    poster: Object
+  },
+  methods: {
+    ...mapMutations(["cambiarEstado"]),
+    mostrarDetalle() {
+      this.cambiarEstado({
+        id: this.poster.id,
+        coleccion: this.poster.coleccion
+      });
+      this.$router.push({ path: "/detalle" });
+    }
+  }
 };
 </script>
 
 <style scoped>
-div {
+section {
   cursor: pointer;
   position: relative;
 }
@@ -29,7 +40,7 @@ img {
   border-radius: 0.5em;
 }
 
-div:hover::after {
+section:hover::after {
   position: absolute;
   content: "";
   background: rgba(0, 0, 0, 0.6);

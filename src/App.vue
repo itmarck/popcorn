@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header id="nav">
-      <h1>Popcorn Time</h1>
+      <h1>Popcorn Web</h1>
       <section>
         <div class="categoria">
           <router-link to="/peliculas">Peliculas</router-link>

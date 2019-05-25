@@ -1,7 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import firebase from "firebase";
+import store from "./store";
+import firebase from "firebase/app";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -20,5 +21,6 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount("#app");
