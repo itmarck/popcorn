@@ -15,8 +15,12 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import AppPoster from "@/components/AppPoster.vue";
 export default {
-  components: { AppPoster },
-  props: ["coleccion"],
+  components: {
+    AppPoster
+  },
+  props: {
+    coleccion: String
+  },
   data() {
     return {
       cartelera: []
