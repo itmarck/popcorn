@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="principal">
     <header class="header">
       <h2 class="header__title">Configuracion</h2> 
       <div class="header__subtitle">
@@ -144,6 +144,9 @@ export default {
 }
 </script>
 <style scoped>
+  .principal{
+    display: block;
+  }
   .header{
     display: flex;
     align-items: center;
