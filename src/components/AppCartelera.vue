@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div>
     <aside v-if="!this.cartelera.length">
       <div class="sk-cube-grid">
         <div class="sk-cube sk-cube1"></div>
@@ -20,7 +20,7 @@
         :poster="{ ...film, coleccion }"
       ></app-poster>
     </section>
-  </main>
+  </div>
 </template>
 
 <script>

@@ -1,11 +1,11 @@
 <template>
-  <article>
+  <div>
     <section @click="mostrarDetalle">
       <img :src="poster.ruta" :alt="poster.titulo" />
     </section>
     <h3>{{ poster.titulo }}</h3>
     <h4>{{ poster.anio }}</h4>
-  </article>
+  </div>
 </template>
 
 <script>
