@@ -33,11 +33,22 @@
         </div>
       </section>
     </header>
-    <router-view />
+    <router-view class="view" />
   </div>
 </template>
 
 <style scoped>
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.view {
+  flex: auto;
+  display: flex;
+}
+
 header {
   width: 100%;
   background-color: var(--colorOscuro);
