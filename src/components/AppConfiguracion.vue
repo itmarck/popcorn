@@ -55,7 +55,7 @@
                       <option value="D">Desvanecer</option>
                       <option value="M">Mostrar</option>
                       <option value="O">Ocultar</option>
-                    </select>option__item  </div>
+                    </select>  </div>
               </div>
     </div>
     <div class="option">
