@@ -33,14 +33,14 @@ url("./fonts/icofont.woff") format("woff");
   -webkit-font-smoothing: antialiased;
 }
 
-.icofont-ui-search:before
-{
-  content: "\ec82";
-}
-
 .icofont-heart:before
 {
   content: "\ef45";
+}
+
+.icofont-ui-search:before
+{
+  content: "\ec82";
 }
 
 .icofont-info-circle:before
@@ -51,6 +51,21 @@ url("./fonts/icofont.woff") format("woff");
 .icofont-gear:before
 {
   content: "\ef3a";
+}
+
+.icofont-ui-close:before
+{
+  content: "\ec4f";
+}
+
+.icofont-ui-keyboard:before
+{
+  content: "\ea54";
+}
+
+.icofont-question-circle:before
+{
+  content: "\efca";
 }
 
 .icofont-xs
