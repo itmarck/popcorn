@@ -7,7 +7,7 @@
       <button @click="cerrar">Cerrar</button>
       <h1>{{ film.titulo }}</h1>
       <h2>{{ film.anio }}</h2>
-      <p>{{ select.coleccion.toUpperCase() }}</p>
+      <h4>{{ select.coleccion.toUpperCase() }}</h4>
       <p>{{ film.sinopsis }}</p>
       <p v-if="this.film.temporadas > 0">temp: {{ film.temporadas }}</p>
       <p v-if="this.film.capitulos > 0">caps: {{ film.capitulos }}</p>
@@ -27,6 +27,14 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 export default {
   name: "AppDetalle",
+  data() {
+    return {
+      film: {}
+    };
+  },
+  computed: {
+    ...mapState(["select"])
+  },
   created() {
     if (this.select.id == "") {
       this.$router.push({ path: "/" });
@@ -41,18 +49,10 @@ export default {
         });
     }
   },
-  data() {
-    return {
-      film: {}
-    };
-  },
   methods: {
     cerrar() {
       this.$router.push({ path: `/${this.select.coleccion}` });
     }
-  },
-  computed: {
-    ...mapState(["select"])
   }
 };
 </script>

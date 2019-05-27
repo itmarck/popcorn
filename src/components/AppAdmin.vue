@@ -8,47 +8,19 @@
         <option value="indie">Indie</option>
       </select>
       <label>Titulo</label>
-      <input
-        type="text"
-        v-model="titulo"
-        placeholder="Con mayuscula la primera letra"
-      />
+      <input type="text" v-model="titulo" />
       <label>Año</label>
       <input type="text" v-model="anio" placeholder="2019" />
       <label>Generos</label>
-      <input
-        type="text"
-        v-model="generos"
-        placeholder="Drama,Aventura (sin espacios entre comas)"
-      />
+      <input type="text" v-model="generos" placeholder="Drama,Aventura" />
       <label>Sinopsis</label>
-      <input
-        type="text"
-        v-model="sinopsis"
-        placeholder="Area de texto sin espacios"
-      />
+      <input type="text" v-model="sinopsis" />
       <label>Ruta</label>
-      <input
-        type="text"
-        v-model="ruta"
-        placeholder="johnwick.jpg (sin espacios a los extremos)"
-      />
+      <input type="text" v-model="ruta" placeholder="johnwick.jpg" />
       <label>Temporadas</label>
-      <input
-        type="text"
-        v-model="temporadas"
-        placeholder="3 (numero)"
-        id="temp"
-        disabled
-      />
+      <input type="text" v-model="temporadas" id="temp" disabled />
       <label>Capitulos</label>
-      <input
-        type="text"
-        v-model="capitulos"
-        placeholder="30 (numero)"
-        id="caps"
-        disabled
-      />
+      <input type="text" v-model="capitulos" id="caps" disabled />
       <button type="submit">Agregar</button>
     </form>
   </div>
