@@ -4,7 +4,7 @@
       class="input"
       type="text"
       v-model="titulo"
-      placeholder="Ingrese titulo a buscar"
+      placeholder="Buscar por titulo"
       @keyup="filtrar"
     />
     <div class="posters">
@@ -37,13 +37,14 @@ export default {
     filtrar() {
       if (this.titulo.trim().length > 0) {
         this.listaFiltrada = this.cartelera.filter(film =>
-          this.reemplazarAcentos(film.titulo).includes(
-            this.reemplazarAcentos(this.titulo)
+          this.incluye(
+            this.limpiarCadena(film.titulo),
+            this.limpiarCadena(this.titulo)
           )
         );
       } else this.listaFiltrada = [];
     },
-    reemplazarAcentos(cadena) {
+    limpiarCadena(cadena) {
       let chars = {
         á: "a",
         é: "e",
@@ -59,6 +60,15 @@ export default {
       let expr = /[áàéèíìóòúùñ]/gi;
       let res = cadena.replace(expr, e => chars[e]);
       return res.toLowerCase().trim();
+    },
+    incluye(cadena, letras) {
+      for (let i = 0; i < letras.length; i++) {
+        const char = letras[i];
+        if (!cadena.includes(char)) {
+          return false;
+        }
+      }
+      return true;
     },
     llenarCarteleraDe(coleccion) {
       firebase
