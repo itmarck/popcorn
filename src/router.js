@@ -9,6 +9,7 @@ import Buscar from "./components/AppBuscar.vue";
 import Favoritos from "./components/AppFavoritos.vue";
 import Info from "./components/AppInfo.vue";
 import Configuracion from "./components/AppConfiguracion.vue";
+import Admin from "./components/AppAdmin.vue";
 
 Vue.use(Router);
 
@@ -63,6 +64,11 @@ export default new Router({
       path: "/configuracion",
       name: "configuracion",
       component: Configuracion
+    },
+    {
+      path: "/admin",
+      name: "admin",
+      component: Admin
     }
   ]
 });

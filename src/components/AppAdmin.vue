@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <form @submit.prevent="add">
-      <select>
+  <div class="main">
+    <form class="form" @submit.prevent="showFilm" @click="reset">
+      <select v-model="coleccion">
         <option value="peliculas">Peliculas</option>
         <option value="series">Series</option>
         <option value="anime">Anime</option>
@@ -12,54 +12,71 @@
       <label>Año</label>
       <input type="text" v-model="anio" placeholder="2019" />
       <label>Generos</label>
-      <input type="text" v-model="generos" placeholder="Drama,Aventura" />
+      <input type="text" v-model="generos" />
       <label>Sinopsis</label>
       <input type="text" v-model="sinopsis" />
       <label>Ruta</label>
       <input type="text" v-model="ruta" placeholder="johnwick.jpg" />
       <label>Temporadas</label>
-      <input type="text" v-model="temporadas" id="temp" disabled />
+      <input type="text" v-model="temporadas" :disabled="isTempCaps" />
       <label>Capitulos</label>
-      <input type="text" v-model="capitulos" id="caps" disabled />
+      <input type="text" v-model="capitulos" :disabled="isTempCaps" />
       <button type="submit">Agregar</button>
+      <div class="display" v-show="show">{{ display }}</div>
     </form>
   </div>
 </template>
 
 <script>
-import firebase from "firebase/app";
-import "firebase/firestore";
 export default {
   name: "AppAdmin",
   data() {
     return {
-      select: "",
+      coleccion: "peliculas",
       titulo: "",
       anio: "",
       generos: "",
       sinopsis: "",
       ruta: "",
       temporadas: "",
-      capitulos: ""
+      capitulos: "",
+      show: false
     };
   },
+  computed: {
+    isTempCaps() {
+      if (this.coleccion != "series" && this.coleccion != "anime") return true;
+      return false;
+    },
+    film() {
+      return this.getFilm();
+    },
+    display() {
+      return `"${this.film.titulo}" se ha agregado a ${this.film.coleccion}`;
+    }
+  },
   methods: {
-    validateFields() {
-      let temporadas = document.querySelector("#temp");
-      let capitulos = document.querySelector("#caps");
-      if (this.select == "series" || this.select == "anime") {
-        temporadas.disabled = false;
-        capitulos.disabled = false;
-      } else {
-        temporadas.disabled = true;
-        capitulos.disabled = true;
+    reset() {
+      if (this.show) {
+        this.coleccion = "peliculas";
+        this.titulo = "";
+        this.anio = "";
+        this.generos = "";
+        this.sinopsis = "";
+        this.ruta = "";
+        this.temporadas = "";
+        this.capitulos = "";
+        this.display = "";
+        this.show = false;
       }
     },
-    add() {
-      this.select = document.querySelector("select").value;
-      let ref = firebase.firestore().collection(this.select);
-      if (this.select == "series" || this.select == "anime") {
-        ref.add({
+    showFilm() {
+      this.show = true;
+    },
+    getFilm() {
+      if (!this.isTempCaps) {
+        return {
+          coleccion: this.coleccion,
           titulo: this.titulo,
           anio: this.anio,
           generos: this.generos.split(","),
@@ -67,44 +84,29 @@ export default {
           ruta: `posters/${this.ruta}`,
           temporadas: this.temporadas,
           capitulos: this.capitulos
-        });
+        };
       } else {
-        ref.add({
+        return {
+          coleccion: this.coleccion,
           titulo: this.titulo,
           anio: this.anio,
           generos: this.generos.split(","),
           sinopsis: this.sinopsis,
           ruta: `posters/${this.ruta}`
-        });
+        };
       }
-      this.clearFields();
-    },
-    clearFields() {
-      this.titulo = "";
-      this.anio = "";
-      this.generos = "";
-      this.sinopsis = "";
-      this.ruta = "";
-      this.temporadas = "";
-      this.capitulos = "";
     }
-  },
-  mounted() {
-    document.querySelector("select").addEventListener("change", () => {
-      this.select = document.querySelector("select").value;
-      this.validateFields();
-    });
   }
 };
 </script>
 
 <style scoped>
-div {
+.main {
   margin: 2em;
   display: flex;
   justify-content: center;
 }
-form {
+.form {
   width: 100%;
   max-width: 30em;
   display: flex;
@@ -131,11 +133,15 @@ input {
   font-size: 0.8rem;
 }
 select {
-  background-color: var(--colorOscuro);
   margin-bottom: 2em;
 }
 button {
   cursor: pointer;
   margin-top: 2em;
+  text-align: center;
+}
+.display {
+  text-align: center;
+  padding: 1em;
 }
 </style>
