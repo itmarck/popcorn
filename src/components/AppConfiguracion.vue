@@ -2,11 +2,13 @@
   <div class="principal">
     <header class="header">
       <h2 class="header__title">Configuracion</h2> 
+      
       <div class="header__subtitle">
-          <i  class="icofont-ui-keyboard header__item"></i>
-          <i class="icofont-question-circle header__item"></i>
-          <input v-on:click="ocultar = !ocultar" class="header__item" type="checkbox"> 
-          <label class="header__item" for="">Mostrar configuracion avanzada</label>
+          <i  class="icofont-ui-keyboard"></i>
+          <i class="icofont-question-circle "></i>
+          <input v-on:click="ocultar = !ocultar"  type="checkbox"> 
+          <label  for="">Mostrar configuracion avanzada</label>
+      
       </div>
     </header>
     <div class="option">
@@ -61,8 +63,8 @@
     <div class="option">
         <div class="option__title" ><h3>Subtitulos</h3></div>
         <div class="option__options">
-          <div class="label__select" >   
-                  <label for="">Sustitulos prederteminados</label>
+          <div class="option__item" >   
+                  <label >Subtitulos por defecto</label>
                   <select >
                       <option value="non">Desactivados</option>
                       <option value="es">Español</option>
@@ -70,7 +72,7 @@
                       <option value="de">Deutsh</option>
                   </select>
           </div>
-          <div class="label__select" >   
+          <div class="option__item" >   
                   <label for="">Tamaño</label>
                   <select >
                       <option value="20">20px</option>
@@ -82,23 +84,24 @@
           </div>
     </div>
     <div class="option">
-      <div class="option__title"><h3>Trarkt.tv</h3></div>
+          <div class="option__title"><h3>Trarkt.tv</h3></div>
           <div class="option__options">
-            <div><p>Conecta a Trakt.tv para sincronizar en Popconr Time los episodios que ves</p>
-            <button>Conectar A Trakt</button>
+            <div>
+            <p class="option__item">Conecta a Trakt.tv para sincronizar en Popconr Time los episodios que ves</p>
+            <button class="option__item">Conectar A Trakt</button>
           </div>
       </div>
     </div>
     <div class="option">
       <div class="option__title"><h3>TVShow Time</h3></div>
-          <div class="option__options"><button>Conectar A TVShow Time</button>
+          <div class="option__options"><button class="option__item" >Conectar A TVShow Time</button>
       </div>
     </div>
      <div class="option">
       <div class="option__title"><h3>{{nombre}}</h3></div>
       <div class="option__options"> 
-        <div class="option__item"><label for="">Nombre</label> <input type="text" v-model="aux"></div>
-        <button v-on:click="cambiarNombre()" >Cambiar Nombre</button>
+        <div class="option__item"><label for="">Nombre</label> <input type="text" v-model="aux"> </div>
+        <button class="option__item" v-on:click="cambiarNombre()" >Cambiar Nombre</button>
       </div>
     </div>
     <div class="option">
@@ -144,112 +147,90 @@ export default {
 </script>
 <style scoped>
   .principal{
-    display: block;
-  }
-  .header{
-    display: flex;
-    align-items: center;
-    margin-left: 8em;
+    flex-direction: column;
   }
   .header__title{
-    font-size: 1.6em;
-    margin-right: 5em;
+    font-size: 1.6em;  
   }
-  .option__title{
-    margin-top: 0em;
-    width: 11em;
-    margin-right: 7.3em;
+  .header{
+    margin: auto;
   }
-  .header__item{
-    margin: 0.5em;
+
+  .header__subtitle i{
+    margin-right: 0.3em;
   }
   .icofont-ui-keyboard, .icofont-question-circle{
     font-size: 1.35em;
   }
-  .option{
+  .option, .header{
     margin: 2em;
     display: flex;
-    margin-left: 8em;
+    flex-flow: column;
   }
+  .option{
+    align-items: center;
+  }
+  .option__title{
+      width: 50%;
+      margin-right: 40%; 
+    }
   .option__options{
     display: flex;
     flex-flow: column;
     margin-top: 1em;
+    width: 20em;
   }
   .option__item{
     margin: 0.5em;
+    width: 18.5em;
   }
   .option__item label{
     margin: 0.5em;
+    margin-left: 0%
   }
   button, select{
     border-radius: 0.3em;
-    height: 2em;
+    padding: 0.3em;
     border: none;
     background-color: rgb(29, 75, 143);
-    color: var(--Blanco);
-    
+    color: var(--Blanco); 
   } 
-
+  button{
+    width: 15em;
+  }
   .footer{
-    margin-right: 8em; 
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    margin-right: 0em;
   }
   .footer__item{
-        margin: 0 0.5em;
-      }
+        margin: 0.5em 0.5em;
+    }
 
-  @media (max-width: 600px) {
-      .header, .option{
-        flex-flow: column;
-      }
-      .option{
-        margin-left: 1.3em;
-      }
+   @media (min-width: 500px) and (max-width: 1000px) {
       .header{
-        margin-left: 0.95em;
+        align-items: center;
       }
-
-      .option__options{
-        margin-left: 0em; 
-      }
-      button{
-        width: 15em;
-      }
-       .footer{
-         justify-content: center;
-        margin-right: 0em;
-      }
-       .footer__item{
-         margin: 0 ;
-         height: 3.5em;
-        border: 0.1em solid black;
-      }
-      
   }
   
-  @media (min-width: 600px) and (max-width: 800px) {
+  @media (min-width: 1000px) {
       .header, .option{
-        flex-flow: column;
+        flex-direction: unset;
+        width: 37em;
+        align-items: unset;
+        margin-left: 8em;
       }
       .header{
-        margin-left: 0.95em;
-      }
-
-      .option__options{
-        margin-left: 7em; 
-      }
-      button{
-        width: 20em;
+        align-items: center;
+        justify-content: space-between;
       }
       .footer{
-        justify-content: center;
-         margin-right: 0em;
+        margin-right: 8em; 
+        justify-content: flex-end;
       }
-      .footer__item{
-        
-        height: 2.5em;
-      }
-  }
+     .option__title{
+      margin-right: 0%; 
+    }
+     
+  } 
 </style>
