@@ -1,30 +1,38 @@
 <template>
   <div class="principal" :style="{ backgroundImage: `url(${film.ruta})` }">
     <div class="sombra">
-      <div class="poster"><img :src="film.ruta"></div>
+      <div class="poster"><img :src="film.ruta" /></div>
       <div class="contenido">
         <div class="contenido__header">
-          <div class="titulo">
+          <div class="cabecera">
             <h1 class="titulo">{{ film.titulo }}</h1>
-            <button class="button__Cerrar" @click="cerrar"><h1>X</h1></button>
+            <button class="button__cerrar" @click="cerrar"><h1>X</h1></button>
           </div>
           <div class="descripcion">
-            <ul>
-                <li v-for="(genero, i) of film.generos" :key="i">{{ genero }}</li>
-                <li>{{film.anio}}</li>
-                <li>{{ select.coleccion.toUpperCase() }}</li>
+            <ul class="generos">
+              <li v-for="(genero, i) of film.generos" :key="i">{{ genero }}</li>
+              <li>{{ film.anio }}</li>
+              <li>{{ select.coleccion.toUpperCase() }}</li>
             </ul>
             <p class="sinopsis">{{ film.sinopsis }}</p>
             <ul>
-              <li v-if="this.film.temporadas > 0">temp: {{ film.temporadas }}</li>
+              <li v-if="this.film.temporadas > 0">
+                temp: {{ film.temporadas }}
+              </li>
               <li v-if="this.film.capitulos > 0">caps: {{ film.capitulos }}</li>
             </ul>
           </div>
         </div>
         <div class="contenido__footer">
+          <button
+            class="button__trailer"
+            @click="pop_up = !pop_up"
+            v-if="!pop_up"
+          >
+            <h1>Ver trailer</h1>
+          </button>
           <button class="icofont-heart"></button>
           <div class="switch"></div>
-          <button class="button__Trailer" id="button__Trailer" @click="pop_up=!pop_up" v-if="!pop_up"><h1>Ver trailer</h1></button>
         </div>
       </div>
     </div>
@@ -62,34 +70,69 @@ export default {
   },
   methods: {
     cerrar() {
-      this.$router.push({ path: `/${this.select.detell}` });
-    },
-
+      this.$router.push({ path: `/${this.select.detelle}` });
+    }
   }
 };
 </script>
-<style>
-.principal{
+
+<style scoped>
+.principal {
   background-size: 100%;
 }
-.sombra{
+.sombra {
   flex: auto;
   background: var(--Negro);
   opacity: 0.9;
-  max-height: inherit;  
   display: flex;
-  padding-top: 4%;
-  padding-bottom: 3%;
-  padding-left: 10%;padding-right: 3%;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.poster{
-  width: 30%;
-  height: 100%;
+.poster {
+  width: 100%;
+  position: relative;
 }
-.poster img{
+.poster:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--colorPrimario) 80%
+  );
+}
+.poster img {
   display: block;
-  width: auto;
-  height: 100%;
+  width: 100%;
+}
+.contenido {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.contenido__header {
+  display: flex;
+  flex-direction: column;
+}
+
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+}
+
+.descripcion {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 580px) {
+  .poster img {
+    display: block;
+  }
 }
 </style>
-
