@@ -1,34 +1,30 @@
 <template>
-  <div id="app">
-    <header id="nav">
-      <h1>Popcorn Web</h1>
-      <section>
-        <div class="categoria">
-          <router-link to="/peliculas">Peliculas</router-link>
-          <router-link to="/series">Series</router-link>
-          <router-link to="/anime">Anime</router-link>
-          <router-link to="/indie">Indie</router-link>
+  <div class="app">
+    <header class="header">
+      <h1 class="title">Popcorn Web</h1>
+      <section class="links">
+        <div class="films">
+          <router-link class="film" to="/peliculas">Peliculas</router-link>
+          <router-link class="film" to="/series">Series</router-link>
+          <router-link class="film" to="/anime">Anime</router-link>
+          <router-link class="film" to="/indie">Indie</router-link>
         </div>
-        <div class="opciones">
+        <div class="options">
           <router-link
-            tag="button"
             to="/buscar"
-            class="icofont-ui-search"
+            class="option icofont-ui-search"
           ></router-link>
           <router-link
-            tag="button"
             to="/favoritos"
-            class="icofont-heart"
+            class="option icofont-heart"
           ></router-link>
           <router-link
-            tag="button"
             to="/info"
-            class="icofont-info-circle"
+            class="option icofont-info-circle"
           ></router-link>
           <router-link
-            tag="button"
             to="/configuracion"
-            class="icofont-gear"
+            class="option icofont-gear"
           ></router-link>
         </div>
       </section>
@@ -38,7 +34,7 @@
 </template>
 
 <style scoped>
-#app {
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -49,42 +45,39 @@
   display: flex;
 }
 
-header {
+.header {
   width: 100%;
   background-color: var(--colorOscuro);
   box-shadow: 0 0 1rem var(--Negro);
 }
 
-h1 {
+.title {
   margin: 0;
-  color: white;
   font-size: 1.2rem;
   text-align: center;
   padding: 1em;
 }
-section {
-  height: 3rem;
+.links {
   display: flex;
   justify-content: space-between;
 }
 
-.categoria,
-.opciones {
+.films,
+.options {
   display: flex;
 }
 
-button {
-  background-color: transparent;
-  border: none;
+.options {
+  padding: 0 0.5em;
+}
+
+.option {
   color: var(--textoClaro);
-  font-size: 1rem;
-  cursor: pointer;
   padding: 0.5em;
 }
 
-button:hover {
+.option:hover {
   color: var(--colorEnfasis);
-  transform: scale(1.1);
   transition: all 0.5s;
 }
 
@@ -94,18 +87,25 @@ a {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 1em;
+  cursor: pointer;
 }
 
-a:hover {
+.film {
+  width: 100%;
+  display: flex;
+}
+
+.film:hover {
   color: var(--Blanco);
   transition: all 0.5s;
 }
 
-a.router-link-exact-active {
+.film.router-link-exact-active {
   color: var(--Blanco);
 }
-a.router-link-exact-active::after {
+.film.router-link-exact-active::after {
   content: "";
   background-color: var(--colorEnfasis);
   position: absolute;
@@ -115,9 +115,16 @@ a.router-link-exact-active::after {
   height: 3px;
 }
 
-@media (max-width: 480px) {
-  .opciones {
-    display: none;
+@media (max-width: 580px) {
+  .links {
+    flex-direction: column-reverse;
+  }
+  .options {
+    justify-content: flex-end;
+  }
+  a {
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 </style>
