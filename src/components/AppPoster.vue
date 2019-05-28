@@ -1,8 +1,8 @@
 <template>
   <div>
-    <section class="poster" @click="mostrarDetalle">
+    <div class="poster" @click="mostrarDetalle">
       <img class="imagen" :src="poster.ruta" :alt="poster.titulo" />
-    </section>
+    </div>
     <h3 class="titulo">{{ poster.titulo }}</h3>
     <h4 class="anio">{{ poster.anio }}</h4>
   </div>

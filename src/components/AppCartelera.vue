@@ -13,7 +13,7 @@
         <div class="sk-cube sk-cube9"></div>
       </div>
     </div>
-    <div class="poster" v-else>
+    <div class="posters" v-else>
       <app-poster
         v-for="film in cartelera"
         :key="film.id"
@@ -72,7 +72,7 @@ export default {
   align-items: center;
 }
 
-.poster {
+.posters {
   margin: 1rem;
   display: grid;
   grid-gap: 1rem;
@@ -80,37 +80,37 @@ export default {
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-  .poster {
+  .posters {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 480px) and (max-width: 640px) {
-  .poster {
+  .posters {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (min-width: 640px) and (max-width: 800px) {
-  .poster {
+  .posters {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (min-width: 800px) and (max-width: 1080px) {
-  .poster {
+  .posters {
     grid-template-columns: repeat(5, 1fr);
   }
 }
 
 @media (min-width: 1080px) and (max-width: 1270px) {
-  .poster {
+  .posters {
     grid-template-columns: repeat(6, 1fr);
   }
 }
 
 @media (min-width: 1270px) {
-  .poster {
+  .posters {
     grid-template-columns: repeat(7, 1fr);
   }
 }
