@@ -3,7 +3,7 @@
     <div class="header">
       <div class="cabecera">
         <h1 class="titulo">{{ film.titulo }}</h1>
-        <div class="icofont-ui-close" @click="cerrar"></div>
+        <i class="icofont-ui-close" @click="cerrar"></i>
       </div>
       <div class="descripcion">
         <p class="info">
@@ -19,7 +19,7 @@
         <p class="sinopsis">{{ film.sinopsis }}</p>
         <p class="generos"><span>Generos: </span> {{ generos }}</p>
         <p class="footer">
-          <button class="trailer" @click="showPopUp" v-if="film.url">
+          <button class="trailer" @click="showModal = true" v-if="film.url">
             VER TRAILER
           </button>
           720p
@@ -28,9 +28,19 @@
             <span class="slider round"></span>
           </label>
           1080p
-          <i class="icofont-heart" 
-          @click="agregarFav({...film, coleccion:select.coleccion , id:select.id})"></i>
+          <i class="icofont-heart" @click="agregar"></i>
         </p>
+        <div class="modal" v-if="showModal">
+          <i class="icofont-ui-close hide" @click="showModal = false"></i>
+          <div class="video">
+            <iframe
+              :src="film.url"
+              width="560"
+              height="315"
+              frameborder="0"
+            ></iframe>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -43,14 +53,30 @@ export default {
   props: {
     film: Object
   },
+  data() {
+    return {
+      showModal: false
+    };
+  },
   computed: {
     generos() {
       return this.film.generos ? this.film.generos.join(", ") : "";
     },
     ...mapState(["select"])
   },
+  mounted() {
+    window.addEventListener("keyup", e => {
+      if (e.key == "Escape") this.showModal = false;
+    });
+  },
   methods: {
-    showPopUp() {},
+    agregar() {
+      this.agregarFav({
+        ...this.film,
+        coleccion: this.select.coleccion,
+        id: this.select.id
+      });
+    },
     cerrar() {
       this.$router.go(-1);
     },
@@ -60,6 +86,24 @@ export default {
 </script>
 
 <style scoped>
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hide {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  color: var(--Blanco);
+}
 .contenido {
   display: flex;
   flex-direction: column;
