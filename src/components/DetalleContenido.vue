@@ -28,7 +28,8 @@
             <span class="slider round"></span>
           </label>
           1080p
-          <a class="icofont-heart"></a>
+          <i class="icofont-heart" 
+          @click="agregarFav({...film, coleccion:select.coleccion , id:select.id})"></i>
         </p>
       </div>
     </div>
@@ -36,7 +37,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "DetalleContenido",
   props: {
@@ -52,7 +53,8 @@ export default {
     showPopUp() {},
     cerrar() {
       this.$router.go(-1);
-    }
+    },
+    ...mapMutations(["agregarFav"])
   }
 };
 </script>
@@ -112,7 +114,7 @@ export default {
 
 .icofont-heart {
   font-size: 1.5rem;
-  padding: 0 1em;
+  margin-left: 1.5rem;
   cursor: pointer;
 }
 
