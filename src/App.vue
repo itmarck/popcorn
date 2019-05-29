@@ -115,7 +115,7 @@ a {
   height: 3px;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 560px) {
   .links {
     flex-direction: column-reverse;
   }

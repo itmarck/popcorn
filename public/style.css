@@ -2,11 +2,13 @@
   --colorPrimario: #17181B;
   --colorOscuro: #141518;
   --colorClaro: #4A5459;
-  --colorEnfasis: #2B6ED2;
+  --colorEnfasis: #1f57ac;
   --textoClaro: #B4B4B4;
   --textoOscuro: #0E0E0E;
+  --textoMasClaro: #ebebeb;
   --Blanco: #FFFFFF;
   --Negro: #000000;
+  --Heart: #b91616;
 }
 
 body {

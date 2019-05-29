@@ -4,22 +4,10 @@
       class="input"
       type="text"
       v-model="titulo"
-      placeholder="Buscar por titulo"
+      placeholder="Escribe un titulo"
       @keyup="filtrar"
     />
-    <div class="loader" v-if="!listaFiltrada.length">
-      <div class="sk-cube-grid">
-        <div class="sk-cube sk-cube1"></div>
-        <div class="sk-cube sk-cube2"></div>
-        <div class="sk-cube sk-cube3"></div>
-        <div class="sk-cube sk-cube4"></div>
-        <div class="sk-cube sk-cube5"></div>
-        <div class="sk-cube sk-cube6"></div>
-        <div class="sk-cube sk-cube7"></div>
-        <div class="sk-cube sk-cube8"></div>
-        <div class="sk-cube sk-cube9"></div>
-      </div>
-    </div>
+    <app-loader v-if="!listaFiltrada.length"></app-loader>
     <div class="posters" v-else>
       <app-poster
         v-for="film in listaFiltrada"
@@ -31,13 +19,15 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from "firebase/app";
 import "firebase/firestore";
 import AppPoster from "@/components/AppPoster.vue";
+import AppLoader from "@/components/AppLoader.vue";
 export default {
   name: "AppBuscar",
   components: {
-    AppPoster
+    AppPoster,
+    AppLoader
   },
   data() {
     return {
@@ -122,12 +112,6 @@ export default {
   color: var(--Blanco);
   margin: 1.5rem 1rem;
   margin-bottom: 0;
-}
-.loader {
-  flex: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .posters {
   margin: 1rem;

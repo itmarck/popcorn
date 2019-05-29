@@ -1,40 +1,9 @@
 <template>
-  <div class="principal" :style="{ backgroundImage: `url(${film.ruta})` }">
-    <div class="sombra">
+  <div class="main">
+    <app-loader v-if="loading"></app-loader>
+    <div class="principal" v-else>
       <div class="poster"><img :src="film.ruta" /></div>
-      <div class="contenido">
-        <div class="contenido__header">
-          <div class="cabecera">
-            <h1 class="titulo">{{ film.titulo }}</h1>
-            <button class="button__cerrar" @click="cerrar"><h1>X</h1></button>
-          </div>
-          <div class="descripcion">
-            <ul class="generos">
-              <li v-for="(genero, i) of film.generos" :key="i">{{ genero }}</li>
-              <li>{{ film.anio }}</li>
-              <li>{{ select.coleccion.toUpperCase() }}</li>
-            </ul>
-            <p class="sinopsis">{{ film.sinopsis }}</p>
-            <ul>
-              <li v-if="this.film.temporadas > 0">
-                temp: {{ film.temporadas }}
-              </li>
-              <li v-if="this.film.capitulos > 0">caps: {{ film.capitulos }}</li>
-            </ul>
-          </div>
-        </div>
-        <div class="contenido__footer">
-          <button
-            class="button__trailer"
-            @click="pop_up = !pop_up"
-            v-if="!pop_up"
-          >
-            <h1>Ver trailer</h1>
-          </button>
-          <button class="icofont-heart"></button>
-          <div class="switch"></div>
-        </div>
-      </div>
+      <detalle-contenido class="contenido" :film="film"></detalle-contenido>
     </div>
   </div>
 </template>
@@ -43,12 +12,19 @@
 import { mapState } from "vuex";
 import firebase from "firebase/app";
 import "firebase/firestore";
+import { setTimeout } from "timers";
+import DetalleContenido from "@/components/DetalleContenido.vue";
+import AppLoader from "@/components/AppLoader.vue";
 export default {
   name: "AppDetalle",
+  components: {
+    DetalleContenido,
+    AppLoader
+  },
   data() {
     return {
       film: {},
-      pop_up: false
+      loading: true
     };
   },
   computed: {
@@ -67,42 +43,34 @@ export default {
           this.film = doc.data();
         });
     }
-  },
-  methods: {
-    cerrar() {
-      this.$router.push({ path: `/${this.select.detelle}` });
-    }
+    var self = this;
+    setTimeout(() => (self.loading = false), 500);
   }
 };
 </script>
 
 <style scoped>
 .principal {
-  background-size: 100%;
-}
-.sombra {
   flex: auto;
-  background: var(--Negro);
-  opacity: 0.9;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
 }
 .poster {
   width: 100%;
   position: relative;
 }
-.poster:after {
+.poster::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 50%;
+  height: 100%;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    var(--colorPrimario) 80%
+    var(--colorPrimario) 60%
   );
 }
 .poster img {
@@ -110,29 +78,40 @@ export default {
   width: 100%;
 }
 .contenido {
-  flex: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.contenido__header {
-  display: flex;
-  flex-direction: column;
+  padding: 0 1rem;
+  position: absolute;
+  top: 60vh;
 }
 
-.cabecera {
-  display: flex;
-  justify-content: space-between;
+@media (min-width: 560px) and (max-width: 1270px) {
+  .contenido {
+    top: 7rem;
+    max-width: 900px;
+  }
+  .poster::after {
+    opacity: 0.9;
+    background: var(--colorPrimario);
+  }
 }
 
-.descripcion {
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 580px) {
-  .poster img {
-    display: block;
+@media (min-width: 1270px) {
+  .contenido {
+    position: static;
+    padding: 0;
+  }
+  .principal {
+    margin: 0 auto;
+    max-width: 1270px;
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: 30% 1fr;
+  }
+  .poster {
+    position: static;
+    box-shadow: 0 0 1rem var(--Negro);
+  }
+  .poster::after {
+    display: none;
   }
 }
 </style>
