@@ -29,7 +29,7 @@
             <option value="3">Black & Yellow</option>
           </select>
         </div>
-        <div class="option__item" v-if="ocultar">
+        <div class="option__item" v-if="!ocultar">
           <label for="">Pantalla de inicio</label>
           <select>
             <option value="peliculas">Peliculas</option>
@@ -38,7 +38,7 @@
             <option value="indie">Indie</option>
           </select>
         </div>
-        <div class="option__item" v-if="ocultar">
+        <div class="option__item" v-if="!ocultar">
           <input type="checkbox" />
           <label for="">Traducir Sinopsis</label>
         </div>
@@ -46,11 +46,11 @@
           <input type="checkbox" />
           <label for="">Mostrar valoracion en las portadas</label>
         </div>
-        <div class="option__item" v-if="ocultar">
+        <div class="option__item" v-if="!ocultar">
           <input type="checkbox" />
           <label for="">Recordar filtros</label>
         </div>
-        <div class="option__item" v-if="ocultar">
+        <div class="option__item" v-if="!ocultar">
           <label for="">Elementos vistos</label>
           <select>
             <option value="D">Desvanecer</option>
@@ -117,11 +117,11 @@
     <div class="option">
       <div class="option__title"><h3>Características</h3></div>
       <div class="option__options">
-        <div class="option__item" v-if="ocultar">
+        <div class="option__item" v-if="!ocultar">
           <input type="checkbox" />
           <label for="">Coleccion de torrents</label>
         </div>
-        <div class="option__item" v-if="ocultar">
+        <div class="option__item" v-if="!ocultar">
           <input type="checkbox" />
           <label for="">Lista de Visionado</label>
         </div>
