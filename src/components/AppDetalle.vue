@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <app-loader v-if="loading"></app-loader>
+    <app-loader v-if="!film.titulo"></app-loader>
     <div class="principal" v-else>
       <div class="poster"><img :src="film.ruta" /></div>
       <detalle-contenido class="contenido" :film="film"></detalle-contenido>
@@ -12,7 +12,6 @@
 import { mapState } from "vuex";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { setTimeout } from "timers";
 import DetalleContenido from "@/components/DetalleContenido.vue";
 import AppLoader from "@/components/AppLoader.vue";
 export default {
@@ -23,8 +22,7 @@ export default {
   },
   data() {
     return {
-      film: {},
-      loading: true
+      film: {}
     };
   },
   computed: {
@@ -43,8 +41,6 @@ export default {
           this.film = doc.data();
         });
     }
-    var self = this;
-    setTimeout(() => (self.loading = false), 500);
   }
 };
 </script>

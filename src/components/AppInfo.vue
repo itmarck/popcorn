@@ -26,7 +26,7 @@
         </div>
         <div class="cuerpo1">
           <div class="mensaje2_img">
-            <img src="../../public/info/Vision.png" alt="" />
+            <img src="../../public/info/vision.png" alt="" />
           </div>
           <div class="mensaje2">
             <div class="mensaje2__titulo">

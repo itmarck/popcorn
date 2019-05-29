@@ -92,9 +92,15 @@ export default {
   }
 }
 
-@media (min-width: 1270px) {
+@media (min-width: 1270px) and (max-width: 2500px) {
   .posters {
     grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+@media (min-width: 2500px) {
+  .posters {
+    grid-template-columns: repeat(10, 1fr);
   }
 }
 </style>
