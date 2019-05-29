@@ -8,25 +8,19 @@
       @keyup="filtrar"
     />
     <app-loader v-if="!listaFiltrada.length"></app-loader>
-    <div class="posters" v-else>
-      <app-poster
-        v-for="film in listaFiltrada"
-        :key="film.id"
-        :poster="film"
-      ></app-poster>
-    </div>
+    <cartelera-todo :films="listaFiltrada" :show="true" v-else></cartelera-todo>
   </div>
 </template>
 
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
-import AppPoster from "@/components/AppPoster.vue";
+import CarteleraTodo from "@/components/CarteleraTodo.vue";
 import AppLoader from "@/components/AppLoader.vue";
 export default {
   name: "AppBuscar",
   components: {
-    AppPoster,
+    CarteleraTodo,
     AppLoader
   },
   data() {
@@ -112,47 +106,5 @@ export default {
   color: var(--Blanco);
   margin: 1.5rem 1rem;
   margin-bottom: 0;
-}
-.posters {
-  margin: 1rem;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(1, 1fr);
-}
-
-@media (min-width: 320px) and (max-width: 480px) {
-  .posters {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 480px) and (max-width: 640px) {
-  .posters {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 640px) and (max-width: 800px) {
-  .posters {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 800px) and (max-width: 1080px) {
-  .posters {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media (min-width: 1080px) and (max-width: 1270px) {
-  .posters {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-@media (min-width: 1270px) {
-  .posters {
-    grid-template-columns: repeat(7, 1fr);
-  }
 }
 </style>
