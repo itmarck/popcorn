@@ -42,7 +42,7 @@
     </div>
   </div> 
     <h2  v-else class="advertencia">
-      NO TIENES NINGÚN FAVORITO ☹️💔
+      NO TIENES NINGÚN FAVORITO
     </h2>
 </template>
 
