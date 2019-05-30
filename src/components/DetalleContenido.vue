@@ -3,7 +3,7 @@
     <div class="header">
       <div class="cabecera">
         <h1 class="titulo">{{ film.titulo }}</h1>
-        <i class="icofont-ui-close" @click="cerrar"></i>
+        <i class="icofont-ui-close back" @click="cerrar"></i>
       </div>
       <div class="descripcion">
         <p class="info">
@@ -33,12 +33,7 @@
         <div class="modal" v-if="showModal">
           <i class="icofont-ui-close hide" @click="showModal = false"></i>
           <div class="video">
-            <iframe
-              :src="film.url"
-              width="560"
-              height="315"
-              frameborder="0"
-            ></iframe>
+            <iframe :src="film.url" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -87,22 +82,35 @@ export default {
 
 <style scoped>
 .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--Negro);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.video {
+  position: relative;
+  width: 100%;
+  height: 57vw;
+}
+iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .hide {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   padding: 1em;
   color: var(--Blanco);
+  z-index: 100;
 }
 .contenido {
   display: flex;
@@ -118,9 +126,10 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-
 .icofont-ui-close {
   cursor: pointer;
+}
+.back {
   display: none;
 }
 
