@@ -68,13 +68,14 @@ export default {
   },
   methods: {
     favorito() {
-      if (this.esFavorito) this.quitarFav(this.film);
+      if (this.esFavorito) this.quitarFav(this.film.id);
       else {
         this.agregarFav({
           ...this.film,
           coleccion: this.select.coleccion
         });
       }
+      localStorage.setItem("favoritos", JSON.stringify(this.favoritos));
     },
     cerrar() {
       this.$router.go(-1);

@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    favoritos: [],
+    favoritos: JSON.parse(localStorage.getItem("favoritos")) || [],
     select: {
       coleccion: "",
       id: ""
@@ -18,8 +18,8 @@ export default new Vuex.Store({
     agregarFav(state, film) {
       state.favoritos.push(film);
     },
-    quitarFav(state, film) {
-      state.favoritos.splice(state.favoritos.indexOf(film), 1);
+    quitarFav(state, id) {
+      state.favoritos.splice(state.favoritos.map(e => e.id).indexOf(id), 1);
     }
   }
 });

@@ -11,7 +11,7 @@
         <div class="cuerpo_cuerpo">
           <div class="mensaje">
             <div class="titulo">
-              <h1>Nuestro Proposito</h1>
+              <h1>Nuestro Propósito</h1>
             </div>
             <div class="frase">
               <p>
@@ -30,14 +30,14 @@
           </div>
           <div class="mensaje2">
             <div class="titulo2">
-              <h1>Conectate con la Pelicula</h1>
+              <h1>Conéctate con la Película</h1>
             </div>
           </div>
         </div>
         <div class="cuerpo_cuerpo">
           <div class="mensaje">
             <div class="titulo">
-              <h1>Miranos desde donde sea</h1>
+              <h1>Míranos desde donde sea</h1>
             </div>
             <div class="frase">
               <p>Disponibles en Android y iPhone.</p>
@@ -50,7 +50,7 @@
       </div>
       <div class="footer">
         <div class="integrantes">
-          <h1>Integrantes</h1>
+          <h2>INTEGRANTES</h2>
         </div>
         <div class="lista">
           <ul>
