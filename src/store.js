@@ -9,14 +9,16 @@ export default new Vuex.Store({
       coleccion: "",
       id: ""
     },
-    favoritos:[]
+    favoritos: []
   },
   mutations: {
     cambiarEstado(state, payload) {
       state.select = payload;
     },
-    agregarFav(state, film){
-      state.favoritos.push(film)
+    agregarFav(state, film) {
+      if (!state.favoritos.filter(e => e.id == film.id).length) {
+        state.favoritos.push(film);
+      }
     }
   }
 });

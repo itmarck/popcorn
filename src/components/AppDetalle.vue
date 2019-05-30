@@ -38,7 +38,10 @@ export default {
         .doc(this.select.id)
         .get()
         .then(doc => {
-          this.film = doc.data();
+          this.film = {
+            id: doc.id,
+            ...doc.data()
+          };
         });
     }
   }

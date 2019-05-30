@@ -28,7 +28,11 @@
             <span class="slider round"></span>
           </label>
           1080p
-          <i class="icofont-heart" @click="agregar"></i>
+          <i
+            class="icofont-heart"
+            @click="agregar"
+            :style="{ color: esFavorito ? 'var(--Heart)' : 'inherit' }"
+          ></i>
         </p>
         <div class="modal" v-if="showModal">
           <i class="icofont-ui-close hide" @click="showModal = false"></i>
@@ -54,10 +58,13 @@ export default {
     };
   },
   computed: {
+    esFavorito() {
+      return this.favoritos.filter(e => e.id == this.film.id).length;
+    },
     generos() {
       return this.film.generos ? this.film.generos.join(", ") : "";
     },
-    ...mapState(["select"])
+    ...mapState(["select", "favoritos"])
   },
   mounted() {
     window.addEventListener("keyup", e => {
