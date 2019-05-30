@@ -69,6 +69,8 @@
 <style scoped>
 .contenedor {
   height: 2000px;
+  max-width: 1270px;
+  margin: 0 auto;
 }
 .principal {
   width: 100%;

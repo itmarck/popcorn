@@ -48,7 +48,7 @@ export default {
   display: block;
 }
 .advertencia {
-  display: block;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 </style>

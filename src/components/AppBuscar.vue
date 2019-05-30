@@ -7,8 +7,15 @@
       placeholder="Escribe un titulo"
       @keyup="filtrar"
     />
-    <app-loader v-if="!listaFiltrada.length"></app-loader>
-    <cartelera-todo :films="listaFiltrada" :show="true" v-else></cartelera-todo>
+    <app-loader v-if="!listaFiltrada.length && !titulo"></app-loader>
+    <div v-else-if="!listaFiltrada.length && titulo" class="advertencia">
+      No se encontraron datos
+    </div>
+    <cartelera-todo
+      :films="listaFiltrada"
+      :show="true"
+      v-else-if="true"
+    ></cartelera-todo>
   </div>
 </template>
 
@@ -106,5 +113,11 @@ export default {
   color: var(--Blanco);
   margin: 1.5rem 1rem;
   margin-bottom: 0;
+}
+.advertencia {
+  flex: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
