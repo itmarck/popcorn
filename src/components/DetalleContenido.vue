@@ -30,7 +30,7 @@
           1080p
           <i
             class="icofont-heart"
-            @click="agregar"
+            @click="favorito"
             :style="{ color: esFavorito ? 'var(--Heart)' : 'inherit' }"
           ></i>
         </p>
@@ -66,23 +66,25 @@ export default {
     },
     ...mapState(["select", "favoritos"])
   },
-  mounted() {
-    window.addEventListener("keyup", e => {
-      if (e.key == "Escape") this.showModal = false;
-    });
-  },
   methods: {
-    agregar() {
-      this.agregarFav({
-        ...this.film,
-        coleccion: this.select.coleccion,
-        id: this.select.id
-      });
+    favorito() {
+      if (this.esFavorito) this.quitarFav(this.film);
+      else {
+        this.agregarFav({
+          ...this.film,
+          coleccion: this.select.coleccion
+        });
+      }
     },
     cerrar() {
       this.$router.go(-1);
     },
-    ...mapMutations(["agregarFav"])
+    ...mapMutations(["agregarFav", "quitarFav"])
+  },
+  mounted() {
+    window.addEventListener("keyup", e => {
+      if (e.key == "Escape") this.showModal = false;
+    });
   }
 };
 </script>
