@@ -130,7 +130,9 @@
       <button @click="restablecerFavoritos">
         RESTABLECER FAVORITOS
       </button>
-      <button>Restablecer configuración</button>
+      <button @click="restablecerConfiguracion">
+        Restablecer configuración
+      </button>
     </footer>
   </div>
 </template>
@@ -155,7 +157,11 @@ export default {
       this.nombreAux = "";
     },
     restablecerFavoritos() {
-      localStorage.clear();
+      localStorage.removeItem("favoritos");
+      location.reload();
+    },
+    restablecerConfiguracion() {
+      localStorage.removeItem("tema");
       location.reload();
     },
     ...mapMutations(["aplicarTema", "establecerTema"])
