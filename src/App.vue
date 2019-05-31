@@ -33,6 +33,18 @@
   </div>
 </template>
 
+<script>
+import { mapMutations } from "vuex";
+export default {
+  methods: {
+    ...mapMutations(["aplicarTema"])
+  },
+  created() {
+    this.aplicarTema();
+  }
+};
+</script>
+
 <style scoped>
 .app {
   min-height: 100vh;

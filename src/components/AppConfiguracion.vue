@@ -14,7 +14,7 @@
       <form class="options" @submit.prevent="cambiarNombre">
         <div class="item">
           <label>Nombre</label>
-          <input type="text" placeholder="Escriba nombre" v-model="aux" />
+          <input type="text" placeholder="Escriba nombre" v-model="nombreAux" />
         </div>
         <button type="submit">Cambiar nombre</button>
       </form>
@@ -32,9 +32,9 @@
         </div>
         <div class="item">
           <label>Apariencia</label>
-          <select>
-            <option>Dark</option>
-            <option>Light</option>
+          <select v-model="temaPage" @change="cambiarTema">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
           </select>
         </div>
         <div class="item">
@@ -135,23 +135,30 @@
   </div>
 </template>
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
       mostrar: false,
       nombre: "Username",
-      aux: ""
+      nombreAux: "",
+      temaPage: localStorage.getItem("tema") || "dark"
     };
   },
   methods: {
+    cambiarTema() {
+      this.establecerTema(this.temaPage);
+      this.aplicarTema();
+    },
     cambiarNombre() {
-      this.nombre = this.aux;
-      this.aux = "";
+      this.nombre = this.nombreAux;
+      this.nombreAux = "";
     },
     restablecerFavoritos() {
       localStorage.clear();
       location.reload();
-    }
+    },
+    ...mapMutations(["aplicarTema", "establecerTema"])
   }
 };
 </script>
