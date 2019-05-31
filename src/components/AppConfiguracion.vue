@@ -1,36 +1,52 @@
 <template>
-  <div class="principal">
-    <header class="header">
-      <h2 class="header__title">Configuracion</h2>
-
-      <div class="header__subtitle">
+  <div class="main">
+    <header class="header item">
+      <h2>Configuracion</h2>
+      <div>
         <i class="icofont-ui-keyboard"></i>
         <i class="icofont-question-circle "></i>
-        <input v-on:click="ocultar = !ocultar" type="checkbox" />
-        <label for="">Mostrar configuracion avanzada</label>
+        <input type="checkbox" id="more" v-model="mostrar" />
+        <label for="more">Mostrar configuracion avanzada</label>
       </div>
     </header>
-    <div class="option">
-      <div class="option__title"><h3>Intezfaz de usuario</h3></div>
-      <div class="option__options">
-        <div class="option__item">
-          <label for="">Idioma predeterminado</label>
+    <section class="section">
+      <h3 class="title">{{ nombre }}</h3>
+      <form class="options" @submit.prevent="cambiarNombre">
+        <div class="item">
+          <label>Nombre</label>
+          <input type="text" placeholder="Escriba nombre" v-model="aux" />
+        </div>
+        <button type="submit">Cambiar nombre</button>
+      </form>
+    </section>
+    <section class="section">
+      <h3 class="title">Intezfaz de usuario</h3>
+      <div class="options">
+        <div class="item">
+          <label>Idioma</label>
           <select>
-            <option value="es">Español</option>
-            <option value="en">English</option>
-            <option value="de">Deutsh</option>
+            <option>Español</option>
+            <option>English</option>
+            <option>Deutsh</option>
           </select>
         </div>
-        <div class="option__item">
-          <label for="">Apariencia</label>
+        <div class="item">
+          <label>Apariencia</label>
           <select>
-            <option value="1">Official - Dark</option>
-            <option value="2">Flat UI</option>
-            <option value="3">Black & Yellow</option>
+            <option>Dark</option>
+            <option>Light</option>
           </select>
         </div>
-        <div class="option__item" v-if="!ocultar">
-          <label for="">Pantalla de inicio</label>
+        <div class="item">
+          <label>Elementos vistos</label>
+          <select>
+            <option>Desvanecer</option>
+            <option>Mostrar</option>
+            <option>Ocultar</option>
+          </select>
+        </div>
+        <div class="item" v-if="mostrar">
+          <label>Pantalla de inicio</label>
           <select>
             <option value="peliculas">Peliculas</option>
             <option value="series">Series</option>
@@ -38,104 +54,83 @@
             <option value="indie">Indie</option>
           </select>
         </div>
-        <div class="option__item" v-if="!ocultar">
+        <div class="item check" v-if="mostrar">
           <input type="checkbox" />
-          <label for="">Traducir Sinopsis</label>
+          <span>Traducir Sinopsis</span>
         </div>
-        <div class="option__item">
+        <div class="item check" v-if="mostrar">
           <input type="checkbox" />
-          <label for="">Mostrar valoracion en las portadas</label>
+          <span>Mostrar valoracion en las portadas</span>
         </div>
-        <div class="option__item" v-if="!ocultar">
+        <div class="item check" v-if="mostrar">
           <input type="checkbox" />
-          <label for="">Recordar filtros</label>
-        </div>
-        <div class="option__item" v-if="!ocultar">
-          <label for="">Elementos vistos</label>
-          <select>
-            <option value="D">Desvanecer</option>
-            <option value="M">Mostrar</option>
-            <option value="O">Ocultar</option>
-          </select>
+          <span>Recordar filtros</span>
         </div>
       </div>
-    </div>
-    <div class="option">
-      <div class="option__title"><h3>Subtitulos</h3></div>
-      <div class="option__options">
-        <div class="option__item">
+    </section>
+    <section class="section">
+      <h3 class="title">Subtitulos</h3>
+      <div class="options">
+        <div class="item">
           <label>Subtitulos por defecto</label>
           <select>
-            <option value="non">Desactivados</option>
-            <option value="es">Español</option>
-            <option value="en">English</option>
-            <option value="de">Deutsh</option>
+            <option>Desactivados</option>
+            <option>Español</option>
+            <option>English</option>
+            <option>Deutsh</option>
           </select>
         </div>
-        <div class="option__item">
-          <label for="">Tamaño</label>
+        <div class="item">
+          <label>Tamaño</label>
           <select>
-            <option value="20">20px</option>
-            <option value="22">22px</option>
-            <option value="28">28px</option>
-            <option value="30">30px</option>
+            <option>20px</option>
+            <option>22px</option>
+            <option>28px</option>
+            <option>30px</option>
           </select>
         </div>
       </div>
-    </div>
-    <div class="option">
-      <div class="option__title"><h3>Trarkt.tv</h3></div>
-      <div class="option__options">
-        <div>
-          <p class="option__item">
+    </section>
+    <section class="section" v-if="mostrar">
+      <h3 class="title">Trarkt.tv</h3>
+      <div class="options">
+        <div class="item reverse">
+          <span>
             Conecta a Trakt.tv para sincronizar en Popconr Time los episodios
             que ves
-          </p>
-          <button class="option__item">Conectar A Trakt</button>
+          </span>
+          <button>Conectar a Trakt</button>
         </div>
       </div>
-    </div>
-    <div class="option">
-      <div class="option__title"><h3>TVShow Time</h3></div>
-      <div class="option__options">
-        <button class="option__item">Conectar A TVShow Time</button>
+    </section>
+    <section class="section" v-if="mostrar">
+      <h3 class="title">TVShow Time</h3>
+      <div class="options">
+        <button>Conectar A TVShow Time</button>
       </div>
-    </div>
-    <div class="option">
-      <div class="option__title">
-        <h3>{{ nombre }}</h3>
-      </div>
-      <div class="option__options">
-        <div class="option__item">
-          <label for="">Nombre</label> <input type="text" v-model="aux" />
-        </div>
-        <button class="option__item" v-on:click="cambiarNombre()">
-          Cambiar Nombre
-        </button>
-      </div>
-    </div>
-    <div class="option">
-      <div class="option__title"><h3>Características</h3></div>
-      <div class="option__options">
-        <div class="option__item" v-if="!ocultar">
+    </section>
+    <section class="section">
+      <h3 class="title">Características</h3>
+      <div class="options">
+        <div class="item check">
           <input type="checkbox" />
-          <label for="">Coleccion de torrents</label>
+          <span>Coleccion de torrents</span>
         </div>
-        <div class="option__item" v-if="!ocultar">
+        <div class="item check">
           <input type="checkbox" />
-          <label for="">Lista de Visionado</label>
+          <span>Lista de visionado</span>
         </div>
-        <div class="option__item">
+        <div class="item check">
           <input type="checkbox" />
-          <label for="">Boton de Seleccion Aleatoria</label>
+          <span>Botón de selección aleatoria</span>
         </div>
       </div>
-    </div>
+    </section>
     <footer class="footer">
-      <button class="footer__item">Limpiar todas las bases de datos</button>
-      <button class="footer__item">
-        Restablecer la configuración predeterminada
+      <button @click="restablecerFavoritos">
+        RESTABLECER FAVORITOS
       </button>
+      <button>Restablecer configuración</button>
     </footer>
   </div>
 </template>
@@ -143,8 +138,8 @@
 export default {
   data() {
     return {
-      ocultar: true,
-      nombre: "Perfil",
+      mostrar: false,
+      nombre: "Username",
       aux: ""
     };
   },
@@ -152,99 +147,136 @@ export default {
     cambiarNombre() {
       this.nombre = this.aux;
       this.aux = "";
+    },
+    restablecerFavoritos() {
+      localStorage.clear();
+      location.reload();
     }
   }
 };
 </script>
+
 <style scoped>
-.principal {
+.main {
+  grid-gap: 3em;
+  width: 100%;
+  max-width: 1270px;
+  margin: 0 auto;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.header,
+.section,
+.reverse {
   flex-direction: column;
 }
-.header__title {
-  font-size: 1.6em;
-}
-.header {
-  margin: auto;
+
+.main,
+.options,
+.footer {
+  display: grid;
 }
 
-.header__subtitle i {
-  margin-right: 0.3em;
-}
-.icofont-ui-keyboard,
-.icofont-question-circle {
-  font-size: 1.35em;
-}
-.option,
-.header {
-  margin: 2em;
-  display: flex;
-  flex-flow: column;
-}
-.option {
-  align-items: center;
-}
-.option__title {
-  width: 50%;
-  margin-right: 40%;
-}
-.option__options {
-  display: flex;
-  flex-flow: column;
-  margin-top: 1em;
-  width: 20em;
-}
-.option__item {
-  margin: 0.5em;
-  width: 18.5em;
-}
-.option__item label {
-  margin: 0.5em;
-  margin-left: 0%;
-}
+input,
 button,
 select {
-  border-radius: 0.3em;
-  padding: 0.3em;
-  border: none;
-  background-color: rgb(29, 75, 143);
+  flex: auto;
+  background-color: var(--colorOscuro);
   color: var(--Blanco);
+  padding: 1em;
+  border: none;
+  border-radius: 1em;
 }
-button {
-  width: 15em;
+
+h2,
+.title,
+input,
+button,
+select {
+  margin: 0;
 }
-.footer {
+
+.section,
+.item {
   display: flex;
-  justify-content: center;
-  margin-right: 0em;
-}
-.footer__item {
-  margin: 0.5em 0.5em;
+  justify-content: space-between;
 }
 
-@media (min-width: 500px) and (max-width: 1000px) {
+.title {
+  margin-bottom: 1em;
+}
+
+label {
+  width: 30%;
+}
+
+label,
+span {
+  color: var(--textoClaro);
+  font-size: 0.9rem;
+}
+
+.options {
+  flex: auto;
+}
+
+.item {
+  align-items: center;
+}
+
+.check {
+  justify-content: flex-start;
+}
+
+.reverse {
+  align-items: stretch;
+}
+
+.reverse button {
+  margin-top: 1em;
+}
+
+input[type="checkbox"] {
+  flex: 0;
+  margin-right: 1em;
+}
+
+.footer {
+  grid-template-columns: 1fr 1fr;
+}
+
+.options,
+.footer {
+  grid-gap: 1em;
+}
+
+button {
+  cursor: pointer;
+}
+
+.icofont-ui-keyboard,
+.icofont-question-circle {
+  font-size: 1.5em;
+  margin-right: 1em;
+}
+
+@media (min-width: 640px) and (max-width: 1270px) {
   .header {
-    align-items: center;
+    flex-direction: row;
+  }
+  .options {
+    margin-left: 2em;
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1270px) {
   .header,
-  .option {
-    flex-direction: unset;
-    width: 37em;
-    align-items: unset;
-    margin-left: 8em;
+  .section {
+    flex-direction: row;
   }
-  .header {
-    align-items: center;
-    justify-content: space-between;
-  }
-  .footer {
-    margin-right: 8em;
-    justify-content: flex-end;
-  }
-  .option__title {
-    margin-right: 0%;
+  .title {
+    width: 30%;
   }
 }
 </style>
