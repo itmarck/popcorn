@@ -6,7 +6,7 @@
 	grid-gap: 2px;
 }
 .sk-cube-grid .sk-cube {
-	background-color: #fff;
+	background-color: var(--Blanco);
 	-webkit-animation: sk-cubeGridScaleDelay 1s infinite ease-in-out;
 	animation: sk-cubeGridScaleDelay 1s infinite ease-in-out;
 }

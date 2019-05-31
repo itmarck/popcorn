@@ -167,7 +167,7 @@ iframe {
 }
 .trailer {
   background: var(--colorEnfasis);
-  color: var(--Blanco);
+  color: white;
   border: none;
   border-radius: 1em;
   margin-right: 1em;
