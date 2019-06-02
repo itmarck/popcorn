@@ -1,7 +1,10 @@
 <template>
   <div class="app">
     <header class="header">
-      <h1 class="title">Popcorn Web</h1>
+      <div class="box">
+        <img class="logo" src="logo.svg" alt="" />
+        <h1 class="title">Popcorn Web</h1>
+      </div>
       <section class="links">
         <div class="films">
           <router-link class="film" to="/peliculas">Peliculas</router-link>
@@ -63,11 +66,25 @@ export default {
   box-shadow: 0 0 1rem var(--Negro);
 }
 
+.box {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  display: block;
+  height: 2em;
+  padding: 1em;
+  padding-right: 0;
+}
+
 .title {
   margin: 0;
   font-size: 1.2rem;
-  text-align: center;
   padding: 1em;
+  padding-left: 0.5em;
+  display: flex;
+  align-items: center;
 }
 .links {
   display: flex;
