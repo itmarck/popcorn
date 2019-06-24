@@ -10,8 +10,7 @@
 
 <script>
 import { mapState } from "vuex";
-import firebase from "firebase/app";
-import "firebase/firestore";
+import { getDocFrom } from "../db/Cartelera";
 import DetalleContenido from "@/components/DetalleContenido.vue";
 import AppLoader from "@/components/AppLoader.vue";
 export default {
@@ -30,19 +29,11 @@ export default {
   },
   created() {
     if (this.select.id == "") {
-      this.$router.push({ path: "/" });
+      this.$router.push("/");
     } else {
-      firebase
-        .firestore()
-        .collection(this.select.coleccion)
-        .doc(this.select.id)
-        .get()
-        .then(doc => {
-          this.film = {
-            id: doc.id,
-            ...doc.data()
-          };
-        });
+      getDocFrom(this.select.coleccion, this.select.id).then(data => {
+        this.film = data;
+      });
     }
   }
 };

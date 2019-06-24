@@ -20,8 +20,7 @@
 </template>
 
 <script>
-import firebase from "firebase/app";
-import "firebase/firestore";
+import { getCarteleraFrom } from "../db/Cartelera";
 import CarteleraTodo from "@/components/CarteleraTodo.vue";
 import AppLoader from "@/components/AppLoader.vue";
 export default {
@@ -73,30 +72,13 @@ export default {
         }
       }
       return true;
-    },
-    llenarCarteleraDe(coleccion) {
-      firebase
-        .firestore()
-        .collection(coleccion)
-        .get()
-        .then(snap => {
-          snap.forEach(doc => {
-            this.cartelera.push({
-              id: doc.id,
-              coleccion,
-              titulo: doc.data().titulo,
-              anio: doc.data().anio,
-              ruta: doc.data().ruta
-            });
-          });
-        });
     }
   },
   created() {
-    this.llenarCarteleraDe("peliculas");
-    this.llenarCarteleraDe("series");
-    this.llenarCarteleraDe("anime");
-    this.llenarCarteleraDe("indie");
+    getCarteleraFrom("peliculas").then(data => this.cartelera.push(...data));
+    getCarteleraFrom("series").then(data => this.cartelera.push(...data));
+    getCarteleraFrom("anime").then(data => this.cartelera.push(...data));
+    getCarteleraFrom("indie").then(data => this.cartelera.push(...data));
   }
 };
 </script>
